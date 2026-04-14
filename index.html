@@ -8,63 +8,93 @@
 </head>
 <body>
 
-<article class="card-container" data-testid="test-todo-card">
+    <article class="card-container" data-testid="test-todo-card">
 
-    <!-- Top Bar -->
-    <div class="top-bar">
-        
-        <div>
-            <input type="checkbox" id="complete" data-testid="test-todo-complete-toggle">
-            <label for="complete"></label>
+        <!-- Top Bar -->
+        <div class="top-bar">
+            
+            <div>
+                <input type="checkbox" id="complete" data-testid="test-todo-complete-toggle">
+                <label for="complete"></label>
+            </div>
+
+            <h2 data-testid="test-todo-title">Task Title</h2>
+
+            <div class="action-buttons">
+                <button class="edit-btn" data-testid="test-todo-edit-button">✎ Edit</button>
+                <div class="panelhidden">
+                    <div class="editpanel">
+                        <textarea name="Task Title" class="tasktitle">
+                            Task Title
+                        </textarea>
+                        <textarea name="Task Description" class="taskdescription">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            Incidunt voluptate cum qui itaque officia ipsum, omnis nesciunt eum ipsa quidem laborum porro.
+                        </textarea>
+                        <!-- Dropdown for the priority -->
+                        <select name="Priority" class="taskpriority">
+                            <option value="Low">Low</option>
+                            <option value="Medium" selected>Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                        <!-- Dropdown for the status -->
+                        <select name="Status" class="taskstatus">
+                            <option value="Not Started">Not Started</option>
+                            <option value="In Progress" selected>In Progress</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                        <!-- Input for the due date -->
+                        <input type="date" name="Due Date" class="taskduedate" value="2026-04-13">
+                        <!-- Input for the tags -->
+                        <input type="text" name="Tags" class="tasktags" value="Work, Personal, Backend">
+                        <button class="save-btn" data-testid="test-todo-save-button">💾Save</button>
+                        <button class="close-btn" data-testid="test-todo-close-button">Close ×</button>
+                </div>
+                </div>
+                <button class="delete-btn" data-testid="test-todo-delete-button">🗑 Delete</button>
+            </div>
+
+            <p class="todo-description" data-testid="test-todo-description">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Incidunt voluptate cum qui itaque officia ipsum, omnis nesciunt eum ipsa quidem laborum porro.
+            </p>
+
+            <span class="priority-label" data-testid="test-todo-priority">Medium</span>
+            <span class="progress-label" data-testid="test-todo-status">In Progress</span>
+
         </div>
 
-        <h2 data-testid="test-todo-title">Task Title</h2>
+        <hr>
 
-        <div class="action-buttons">
-            <button class="edit-btn" data-testid="test-todo-edit-button">✎ Edit</button>
-            <button class="delete-btn" data-testid="test-todo-delete-button">🗑 Delete</button>
+        <!-- Mid Bar -->
+        <div class="mid-bar">
+
+            <span class="due-date-label">Due Date</span>
+            <span class="time-remaining-label">Time Remaining</span>
+
+            <time class="date-holder" datetime="2026-04-13" data-testid="test-todo-due-date">
+                April 13th 2026
+            </time>
+
+            <time class="time-holder" data-testid="test-todo-time-remaining">
+                Due Tomorrow
+            </time>
+
         </div>
-        
-        <p class="todo-description" data-testid="test-todo-description">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-            Incidunt voluptate cum qui itaque officia ipsum, omnis nesciunt eum ipsa quidem laborum porro.
-        </p>
 
-        <span class="priority-label" data-testid="test-todo-priority">Medium</span>
-        <span class="progress-label" data-testid="test-todo-status">In Progress</span>
+        <!-- Tags -->
+        <div class="last-bar">
+            <h2>Tags</h2>
 
-    </div>
+            <ul class="tags-container" data-testid="test-todo-tags">
+                <li class="tag" data-testid="test-todo-tag-work">Work</li>
+                <li class="tag" data-testid="test-todo-tag-personal">Personal</li>
+                <li class="tag" data-testid="test-todo-tag-backend">Backend</li>
+            </ul>
+        </div>
 
-    <hr>
+    </article>
 
-    <!-- Mid Bar -->
-    <div class="mid-bar">
-
-        <span class="due-date-label">Due Date</span>
-        <span class="time-remaining-label">Time Remaining</span>
-
-        <time class="date-holder" datetime="2026-04-13" data-testid="test-todo-due-date">
-            April 13th 2026
-        </time>
-
-        <time class="time-holder" data-testid="test-todo-time-remaining">
-            Due Tomorrow
-        </time>
-
-    </div>
-
-    <!-- Tags -->
-    <div class="last-bar">
-        <h2>Tags</h2>
-
-        <ul class="tags-container" data-testid="test-todo-tags">
-            <li class="tag" data-testid="test-todo-tag-work">Work</li>
-            <li class="tag" data-testid="test-todo-tag-personal">Personal</li>
-            <li class="tag" data-testid="test-todo-tag-backend">Backend</li>
-        </ul>
-    </div>
-
-</article>
-
+    <script src="index.js"></script>
 </body>
 </html>
