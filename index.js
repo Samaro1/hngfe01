@@ -12,8 +12,8 @@ const elements = {
 
 // CONFIG
 const config = {
-  dueDate: "2026-04-13T23:59:59",
-  priority: "medium"
+  dueDate: "2026-04-15T23:59:59",
+  priority: "high"
 };
 
 
@@ -29,16 +29,20 @@ function updatePriority(level) {
 
 // TIME CALCULATION
 function formatTimeRemaining(diff) {
-  const minutes = Math.floor(diff / (1000 * 60));
-  const hours = Math.floor(diff / (1000 * 60 * 60));
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const abs = Math.abs(diff);
 
-  if (diff <= 0) return "Overdue";
+  const minutes = Math.floor(abs / (1000 * 60));
+  const hours = Math.floor(abs / (1000 * 60 * 60));
+  const days = Math.floor(abs / (1000 * 60 * 60 * 24));
+
+  if (diff <= 0) {
+    if (minutes < 60) return `Overdue by ${minutes} min`;
+    if (hours < 24) return `Overdue by ${hours} hr${hours > 1 ? 's' : ''}`;
+    return `Overdue by ${days} day${days > 1 ? 's' : ''}`;
+  }
 
   if (minutes < 60) return `Due in ${minutes} min`;
-
   if (hours < 24) return `Due in ${hours} hr${hours > 1 ? 's' : ''}`;
-
   if (days === 1) return "Due Tomorrow";
 
   return `Due in ${days} days`;
@@ -48,10 +52,25 @@ function formatTimeRemaining(diff) {
 function updateTimeRemaining() {
   const now = new Date();
   const due = new Date(config.dueDate);
-
   const diff = due - now;
 
-  elements.time.textContent = formatTimeRemaining(diff);
+  const timeEl = elements.time;
+
+  timeEl.classList.remove('time-urgent', 'time-warning');
+
+  if (diff <= 0) {
+    timeEl.classList.add('time-urgent');
+    if (!elements.checkbox.checked) {
+      elements.status.textContent = "Overdue";
+    }
+  } else if (diff < 1000 * 60 * 60 * 24) {
+    timeEl.classList.add('time-warning');
+    if (!elements.checkbox.checked) {
+      elements.status.textContent = "In Progress";
+    }
+  }
+
+  timeEl.textContent = formatTimeRemaining(diff);
 }
 
 // DUE DATE FORMATTER
@@ -59,7 +78,7 @@ function formatDueDate() {
   const due = new Date(config.dueDate);
 
   const options = { year: 'numeric', month: 'short', day: 'numeric' };
-  elements.dueDate.textContent = due.toLocaleDateString(undefined, options);
+  elements.dueDate.textContent = `Due ${due.toLocaleDateString(undefined, options)}`;
 }
 
 // COMPLETION HANDLER
