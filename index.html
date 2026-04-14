@@ -8,70 +8,109 @@
 </head>
 <body>
 
-  <article class="card-container" data-testid="test-todo-card">
+  <!-- Card Container -->
+  <article data-testid="test-todo-card" class="todo-card">
 
-    <div class="top-bar">
-      <div>
+    <!-- Header Section -->
+    <header class="todo-header">
+
+      <!-- Checkbox -->
+      <div class="todo-checkbox">
         <input 
           type="checkbox" 
-          id="complete" 
+          id="todo-complete"
           data-testid="test-todo-complete-toggle"
         >
-        <label for="complete">Mark as complete</label>
+        <label for="todo-complete"></label>
       </div>
 
+      <!-- Title -->
       <h2 data-testid="test-todo-title">
         Build Todo Card UI
       </h2>
 
-      <div class="action-buttons">
-        <button data-testid="test-todo-edit-button" aria-label="Edit task">✎</button>
-        <button data-testid="test-todo-delete-button" aria-label="Delete task">🗑</button>
+      <!-- Action Buttons -->
+      <div class="todo-actions">
+        <button 
+          type="button" 
+          data-testid="test-todo-edit-button"
+          aria-label="Edit task"
+        >
+          ✎
+        </button>
+
+        <button 
+          type="button" 
+          data-testid="test-todo-delete-button"
+          aria-label="Delete task"
+        >
+          🗑
+        </button>
       </div>
 
-      <p data-testid="test-todo-description">
-        Design and implement a clean, interactive task card with time tracking and priority styling.
-      </p>
+    </header>
 
-      <span class="priority-label priority-medium" data-testid="test-todo-priority">
+    <!-- Description -->
+    <section class="todo-description-section">
+      <p data-testid="test-todo-description">
+        Design and implement a clean, interactive task card with dynamic time tracking and priority styling.
+      </p>
+    </section>
+
+    <!-- Meta Info -->
+    <section class="todo-meta">
+
+      <!-- Priority -->
+      <span 
+        data-testid="test-todo-priority" 
+        class="priority priority-medium"
+      >
         Medium
       </span>
 
-      <span class="status-label" data-testid="test-todo-status">
+      <!-- Status -->
+      <span 
+        data-testid="test-todo-status"
+        class="status"
+      >
         In Progress
       </span>
 
-    </div>
+    </section>
 
-    <hr>
+    <!-- Time Section -->
+    <section class="todo-time">
 
-    <div class="mid-bar">
+      <div>
+        <strong>Due Date:</strong>
+        <time 
+          datetime="2026-04-13"
+          data-testid="test-todo-due-date"
+        >
+          Apr 13, 2026
+        </time>
+      </div>
 
-      <span>Due Date</span>
-      <span>Time Remaining</span>
+      <div>
+        <strong>Time Remaining:</strong>
+        <time data-testid="test-todo-time-remaining">
+          Calculating...
+        </time>
+      </div>
 
-      <time 
-        datetime="2026-04-13" 
-        data-testid="test-todo-due-date"
-      >
-        Apr 13, 2026
-      </time>
+    </section>
 
-      <time data-testid="test-todo-time-remaining">
-        Calculating...
-      </time>
+    <!-- Tags -->
+    <section class="todo-tags-section">
 
-    </div>
+      <ul data-testid="test-todo-tags" role="list" class="tags">
 
-    <div class="last-bar">
-      <h3>Tags</h3>
+        <li data-testid="test-todo-tag-work">Work</li>
+        <li data-testid="test-todo-tag-personal">Personal</li>
+        <li data-testid="test-todo-tag-backend">Frontend</li>
 
-      <ul class="tags-container" data-testid="test-todo-tags">
-        <li class="tag" data-testid="test-todo-tag-work">Work</li>
-        <li class="tag" data-testid="test-todo-tag-personal">Personal</li>
-        <li class="tag" data-testid="test-todo-tag-backend">Backend</li>
       </ul>
-    </div>
+    </section>
 
   </article>
 
