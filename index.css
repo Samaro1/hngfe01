@@ -120,7 +120,6 @@ body {
 }
 
 /* TIME SECTION */
-
 .todo-time {
   display: flex;
   justify-content: space-between;
@@ -148,8 +147,6 @@ body {
 }
 
 /* TAGS */
-
-
 .tags {
   display: flex;
   flex-wrap: wrap;
@@ -173,11 +170,14 @@ body {
 }
 
 /* COMPLETED STATE */
-
 .status-completed {
   opacity: 0.6;
 }
 
 .status-completed h2 {
   text-decoration: line-through;
+}
+
+.status-completed .status {
+  background-color: var(--completed-color);
 }
