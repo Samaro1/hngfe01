@@ -1,7 +1,7 @@
 /* BASE */
-
 body {
   font-family: system-ui, -apple-system, sans-serif;
+  background: #f6f7fb;
 }
 
 :root {
@@ -9,36 +9,35 @@ body {
   --medium-priority-color: #ffcc00;
   --high-priority-color: #dc3545;
   --low-priority-color: #289ca7;
+
+  --card-bg: #ffffff;
+  --text-muted: #555;
 }
 
 /* CARD */
-
-
 .todo-card {
   max-width: 700px;
   width: 90%;
   margin: 40px auto;
   padding: 20px;
 
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background: var(--card-bg);
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
 
   display: flex;
   flex-direction: column;
   gap: 16px;
 
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
 }
 
 .todo-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.12);
 }
 
-
 /* HEADER */
-
 .todo-header {
   display: flex;
   align-items: center;
@@ -46,14 +45,13 @@ body {
   gap: 10px;
 }
 
-.todo-header h2 {
+.todo-title {
   flex: 1;
   font-size: 1.4rem;
   margin: 0;
 }
 
 /* ACTION BUTTONS */
-
 .todo-actions {
   display: flex;
   gap: 8px;
@@ -65,41 +63,54 @@ body {
   border-radius: 8px;
   cursor: pointer;
   font-size: 0.9rem;
+  transition: 0.2s ease;
 }
 
 [data-testid="test-todo-edit-button"] {
-  background-color: #007bff;
+  background: #007bff;
   color: #fff;
 }
 
 [data-testid="test-todo-edit-button"]:hover {
-  background-color: #0056b3;
+  background: #0056b3;
 }
 
 [data-testid="test-todo-delete-button"] {
-  background-color: #dc3545;
+  background: #dc3545;
   color: #fff;
 }
 
 [data-testid="test-todo-delete-button"]:hover {
-  background-color: #c82333;
+  background: #c82333;
 }
 
-/* DESCRIPTION */
+/* DESCRIPTION (FIXED) */
+.todo-description-wrapper [data-testid="test-todo-collapsible-section"] {
+  max-height: 500px;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
 
-.todo-description-section p {
-  margin: 0;
-  color: #555;
-  line-height: 1.5;
+/* collapsed state */
+.todo-description-wrapper 
+[data-testid="test-todo-collapsible-section"].collapsed {
+  max-height: 60px;
+}
+
+/* expanded state */
+.todo-description-wrapper [data-testid="test-todo-collapsible-section"]:not(.collapsed) {
+  max-height: 500px;
 }
 
 /* META */
-
 .todo-meta {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  gap: 19px;
+  flex-wrap: wrap;
 }
 
+/* PRIORITY */
 .priority {
   color: #fff;
   padding: 4px 10px;
@@ -107,19 +118,83 @@ body {
   font-size: 0.85rem;
 }
 
-.priority-high { background-color: var(--high-priority-color); }
-.priority-medium { background-color: var(--medium-priority-color); }
-.priority-low { background-color: var(--low-priority-color); }
+.priority-high { background: var(--high-priority-color); }
+.priority-medium { background: var(--medium-priority-color); }
+.priority-low { background: var(--low-priority-color); }
 
+/* priority indicator dot */
+[data-testid="test-todo-priority-indicator"] {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.priority-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.priority-dot.priority-high {
+  background: var(--high-priority-color);
+}
+
+.priority-dot.priority-medium {
+  background: var(--medium-priority-color);
+}
+
+.priority-dot.priority-low {
+  background: var(--low-priority-color);
+}
+
+.priority-high + .priority-dot {
+  background: var(--high-priority-color);
+}
+
+.priority-medium + .priority-dot {
+  background: var(--medium-priority-color);
+}
+
+.priority-low + .priority-dot {
+  background: var(--low-priority-color);
+}
+
+/* EXPAND BUTTON */
+.expand-btn {
+  margin-top: 6px;
+  align-self: flex-start;
+  background: #cbc3c3;
+  border: none;
+  color: #000000;
+  font-size: 0.85rem;
+  font-weight: 500;
+
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 6px;
+
+  transition: all 0.2s ease;
+}
+
+.expand-btn:hover {
+  background: rgba(0, 123, 255, 0.1);
+}
+
+.expand-btn:active {
+  transform: scale(0.97);
+}
+
+/* STATUS */
 .status {
-  background-color: #007bff;
+  background: #007bff;
   color: #fff;
   padding: 4px 10px;
   border-radius: 999px;
   font-size: 0.85rem;
 }
 
-/* TIME SECTION */
+/* TIME */
 .todo-time {
   display: flex;
   justify-content: space-between;
@@ -127,23 +202,36 @@ body {
   font-size: 0.9rem;
 }
 
-.todo-time div {
+.todo-time div{
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+
+.todo-time strong{
+  font-size: 0.8rem;
+  color: #777;
 }
 
 .todo-time time {
   font-weight: 600;
 }
 
-/* urgency states */
+/* urgency */
 .time-urgent {
   color: var(--high-priority-color);
+  font-weight: 600;
 }
 
 .time-warning {
   color: var(--medium-priority-color);
+  font-weight: 600;
+}
+
+/* OVERDUE */
+.overdue {
+  color: var(--high-priority-color);
+  font-weight: 700;
 }
 
 /* TAGS */
@@ -157,19 +245,15 @@ body {
   margin: 0;
 }
 
-
 .tags li {
-  background-color: #17a2b8;
+  background: #17a2b8;
   color: #fff;
   padding: 5px 10px;
   border-radius: 999px;
   font-size: 0.8rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-/* COMPLETED STATE */
+/* COMPLETED */
 .status-completed {
   opacity: 0.6;
 }
@@ -178,6 +262,51 @@ body {
   text-decoration: line-through;
 }
 
-.status-completed .status {
-  background-color: var(--completed-color);
+/* EDIT MODE */
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  background: #f9fafc;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.edit-form input,
+.edit-form textarea,
+.edit-form select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 0.9rem;
+}
+
+.edit-form button {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+[data-testid="test-todo-save-button"] {
+  background: #28a745;
+  color: white;
+}
+
+[data-testid="test-todo-cancel-button"] {
+  background: #6c757d;
+  color: white;
+}
+
+/* hidden utility */
+.hidden {
+  display: none !important;
+}
+
+/* smooth transitions for mode switch */
+.todo-view,
+.edit-form {
+  transition: all 0.25s ease;
 }

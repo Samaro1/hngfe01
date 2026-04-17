@@ -1,119 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Todo Card - Stage 0</title>
-  <link rel="stylesheet" href="index.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Todo Card - Stage 1A</title>
+  <link rel="stylesheet" href="index.css" />
 </head>
+
 <body>
 
-  <!-- Card Container -->
-  <article data-testid="test-todo-card" class="todo-card">
+<article data-testid="test-todo-card" class="todo-card">
 
-    <!-- Header Section -->
+  <!-- VIEW MODE WRAPPER -->
+  <section data-testid="test-todo-view" class="todo-view">
+
     <header class="todo-header">
 
-      <!-- Checkbox -->
-      <div class="todo-checkbox">
-        <input 
-          type="checkbox" 
-          id="todo-complete"
-          data-testid="test-todo-complete-toggle"
-        >
-        <label for="todo-complete"></label>
-      </div>
+      <input
+        type="checkbox"
+        data-testid="test-todo-complete-toggle"
+      />
 
-      <!-- Title -->
-      <h2 data-testid="test-todo-title">
-        Build Todo Card UI
-      </h2>
+      <h2 data-testid="test-todo-title">Build Interactive Todo Card UI</h2>
 
-      <!-- Action Buttons -->
       <div class="todo-actions">
-        <button 
-          type="button" 
-          data-testid="test-todo-edit-button"
-          aria-label="Edit task"
-        >
-          ✎
-        </button>
-
-        <button 
-          type="button" 
-          data-testid="test-todo-delete-button"
-          aria-label="Delete task"
-        >
-          🗑
-        </button>
+        <button data-testid="test-todo-edit-button">✎</button>
+        <button data-testid="test-todo-delete-button">🗑</button>
       </div>
-
     </header>
 
-    <!-- Description -->
-    <section class="todo-description-section">
-      <p data-testid="test-todo-description">
-        Design and implement a clean, interactive task card with dynamic time tracking and priority styling.
-      </p>
+    <!-- DESCRIPTION -->
+    <section class="todo-description-wrapper">
+
+      <div data-testid="test-todo-collapsible-section">
+        <p data-testid="test-todo-description">
+          Design and implement a clean interactive task card.
+        </p>
+      </div>
+
+      <button 
+        data-testid="test-todo-expand-toggle"
+        class="expand-btn"
+      >
+        Expand
+      </button>
+
     </section>
 
-    <!-- Meta Info -->
+    <!-- META -->
     <section class="todo-meta">
 
-      <!-- Priority -->
-      <span 
-        data-testid="test-todo-priority" 
-        class="priority priority-high"
+      <span data-testid="test-todo-priority" class="priority priority-high">High</span>
+      <span data-testid="test-todo-priority-indicator"></span>
+
+      <span data-testid="test-todo-status" class="status">In Progress</span>
+
+      <select data-testid="test-todo-status-control">
+        <option value="pending">Pending</option>
+        <option value="in-progress">In Progress</option>
+        <option value="done">Done</option>
+      </select>
+
+    </section>
+
+    <!-- TIME -->
+  <section class="todo-time">
+
+    <div>
+      <strong>Due Date:</strong>
+      <time
+        datetime="2026-04-15T23:59:59"
+        data-testid="test-todo-due-date"
       >
-        High
-      </span>
+        Apr 15, 2026
+      </time>
+    </div>
 
-      <!-- Status -->
-      <span 
-        data-testid="test-todo-status"
-        class="status"
-      >
-        In Progress
-      </span>
+    <div>
+      <strong>Time Remaining:</strong>
+      <time data-testid="test-todo-time-remaining">
+        Calculating...
+      </time>
+    </div>
 
-    </section>
+    <span
+      data-testid="test-todo-overdue-indicator"
+      class="overdue hidden"
+    >
+      Overdue
+    </span>
 
-    <!-- Time Section -->
-    <section class="todo-time">
+</section>
 
-      <div>
-        <strong>Due Date:</strong>
-        <time 
-          datetime="2026-04-15T23:59:59"
-          data-testid="test-todo-due-date"
-        >
-          Apr 15, 2026
-        </time>
-      </div>
+  </section>
 
-      <div>
-        <strong>Time Remaining:</strong>
-        <time data-testid="test-todo-time-remaining">
-          Calculating...
-        </time>
-      </div>
+  <!-- EDIT MODE -->
+  <section data-testid="test-todo-edit-form" class="edit-form hidden">
 
-    </section>
+    <input data-testid="test-todo-edit-title-input" />
 
-    <!-- Tags -->
-    <section class="todo-tags-section">
+    <textarea data-testid="test-todo-edit-description-input"></textarea>
 
-      <ul data-testid="test-todo-tags" role="list" class="tags">
+    <select data-testid="test-todo-edit-priority-select">
+      <option value="low">Low</option>
+      <option value="medium">Medium</option>
+      <option value="high">High</option>
+    </select>
 
-        <li data-testid="test-todo-tag-work">Work</li>
-        <li data-testid="test-todo-tag-personal">Personal</li>
-        <li data-testid="test-todo-tag-frontend">Frontend</li>
+    <input type="datetime-local"
+      data-testid="test-todo-edit-due-date-input" />
 
-      </ul>
-    </section>
+    <button data-testid="test-todo-save-button">Save</button>
+    <button data-testid="test-todo-cancel-button">Cancel</button>
 
-  </article>
+  </section>
 
-  <script src="index.js"></script>
+  <!-- TAGS -->
+  <ul data-testid="test-todo-tags" class="tags">
+    <li>Work</li>
+    <li>Frontend</li>
+  </ul>
+
+</article>
+
+<script src="index.js"></script>
 </body>
 </html>
