@@ -84,11 +84,61 @@ body {
   background: #c82333;
 }
 
-/* DESCRIPTION (FIXED) */
+/* DESCRIPTION */
+.todo-description-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; 
+  margin-bottom: 10px;
+}
+
 .todo-description-wrapper [data-testid="test-todo-collapsible-section"] {
   max-height: 500px;
   overflow: hidden;
   transition: max-height 0.3s ease;
+}
+
+/* Status Control */
+[data-testid="test-todo-status-control"] {
+  appearance: none;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  cursor: pointer;
+
+  background: #e9ecef;
+  color: #333;
+
+  transition: all 0.2s ease;
+}
+
+/* hover */
+[data-testid="test-todo-status-control"]:hover {
+  background: #dee2e6;
+}
+
+/* focus */
+[data-testid="test-todo-status-control"]:focus {
+  outline: 2px solid #007bff;
+}
+
+.status.pending,
+[data-testid="test-todo-status-control"][value="pending"] {
+  background: #6c757d;
+  color: white;
+}
+
+.status.in-progress,
+[data-testid="test-todo-status-control"][value="in-progress"] {
+  background: #007bff;
+  color: white;
+}
+
+.status.done,
+[data-testid="test-todo-status-control"][value="done"] {
+  background: var(--completed-color);
+  color: black;
 }
 
 /* collapsed state */
