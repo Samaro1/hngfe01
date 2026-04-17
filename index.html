@@ -53,7 +53,7 @@
       <span data-testid="test-todo-priority" class="priority priority-high">High</span>
       <span data-testid="test-todo-priority-indicator"></span>
 
-      <span data-testid="test-todo-status" class="status">In Progress</span>
+      <span data-testid="test-todo-status" class="status">In Progress </span>
 
       <select data-testid="test-todo-status-control">
         <option value="pending">Pending</option>
@@ -97,10 +97,13 @@
   <!-- EDIT MODE -->
   <section data-testid="test-todo-edit-form" class="edit-form hidden">
 
+    <label for="edit-title">Title</label>
     <input data-testid="test-todo-edit-title-input" />
 
+    <label for="edit-description">Description</label>
     <textarea data-testid="test-todo-edit-description-input"></textarea>
 
+    <label for="edit-priority">Priority</label>
     <select data-testid="test-todo-edit-priority-select">
       <option value="low">Low</option>
       <option value="medium">Medium</option>

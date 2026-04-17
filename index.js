@@ -229,6 +229,8 @@ function render() {
   elements.title.textContent = state.title;
   elements.desc.textContent = state.description;
 
+  elements.statusControl.className = state.status;
+
   syncPriorityUI();
   syncStatusUI();
   syncDueDateUI();
