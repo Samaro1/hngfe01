@@ -40,7 +40,7 @@ const state = {
   description: "Design and implement a clean interactive task card. ",
   priority: "high",
   status: "in-progress",
-  dueDate: "2026-04-15T23:59:59",
+  dueDate: "2026-04-18T23:59:59",
   expanded: false,
   editing: false
 };
@@ -167,10 +167,10 @@ function syncDueDateUI() {
 }
 
 function syncExpandUI() {
-  const shouldCollapse = !state.expanded;
+  const isCollapsed = !state.expanded;
 
-  elements.collapsibleSection.classList.toggle("collapsed", shouldCollapse);
-  elements.expandBtn.textContent = shouldCollapse ? "Expand" : "Collapse";
+  elements.collapsibleSection.classList.toggle("collapsed", isCollapsed);
+  elements.expandBtn.textContent = state.expanded ? "Collapse" : "Expand";
 }
 
 function updateTimeRemaining() {
@@ -292,9 +292,7 @@ function cancelEdit() {
 
 function toggleExpand() {
   state.expanded = !state.expanded;
-
-  elements.collapsibleSection.classList.toggle("collapsed", !state.expanded);
-  elements.expandBtn.textContent = state.expanded ? "Collapse" : "Expand";
+  syncExpandUI();
 }
 
 function setStatus(nextStatus) {
@@ -330,7 +328,12 @@ function handleStatusControlChange(e) {
 }
 
 function init() {
-  state.expanded = state.description.length <= DESCRIPTION_COLLAPSE_THRESHOLD;
+  state.expanded = false;
+
+  elements.collapsibleSection.classList.add("collapsed");
+  elements.expandBtn.textContent = "Expand";
+
+  elements.expandBtn.textContent = state.expanded ? "Collapse" : "Expand";
 
   elements.editBtn.addEventListener("click", enterEditMode);
   elements.saveBtn.addEventListener("click", saveEdit);
