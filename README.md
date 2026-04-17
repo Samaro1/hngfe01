@@ -1,18 +1,21 @@
 # Task Card UI – HNG Stage 0
 
-A clean, interactive, high-fidelity Task Card built as part of an HNG frontend task.  
-The component simulates a modern productivity app card with dynamic time tracking, status updates, and interactive controls.
+A clean, interactive, high-fidelity Task Card built as part of an HNG frontend task.
+The component simulates a modern productivity app card with dynamic time tracking, status management, priority indicators, and an editable UI state.
 
 ## Features
 
 - Interactive task completion checkbox
 - Live time remaining updates (auto-refresh every 30 seconds)
-- Priority-based styling system
-- Status updates (In Progress / Completed / Overdue)
+- Priority system with dynamic visual indicators (Low / Medium / High)
+- Status control system (Pending / In Progress / Done)
+- Expand / collapse description for long content
+- Edit mode with full task modification (title, description, priority, due date)
 - Semantic and accessible HTML structure
-- Fully testable via required `data-testid` attributes
+- Fully testable via required data-testid attributes
 - Tag system for categorization
 - Edit and delete action buttons (UI-level)
+
 
 ## How to Run Locally
 
@@ -59,6 +62,14 @@ Status is derived from:
 Checkbox state → Completed / In Progress
 Time comparison → Overdue detection
 Combined logic ensures real-time feedback
+
+### 5. 3. State-driven UI updates
+Single state object controls:
+
+- Task data
+- UI mode (edit/view)
+- Expansion state
+- Status and priority
 
 ## TradeOffs
 ### 1. No framework (React/Vue)
