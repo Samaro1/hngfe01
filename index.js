@@ -229,7 +229,7 @@ function render() {
   elements.title.textContent = state.title;
   elements.desc.textContent = state.description;
 
-  elements.statusControl.className = state.status;
+  elements.statusControl.value = state.status;
 
   syncPriorityUI();
   syncStatusUI();
@@ -278,8 +278,6 @@ function saveEdit() {
   if (nextDescription) state.description = nextDescription;
   if (nextPriority) state.priority = nextPriority;
   if (nextDueDate) state.dueDate = nextDueDate;
-
-  state.expanded = state.description.length <= DESCRIPTION_COLLAPSE_THRESHOLD;
 
   render();
   exitEditMode();
@@ -330,13 +328,13 @@ function handleStatusControlChange(e) {
 function init() {
   state.expanded = false;
 
-  elements.collapsibleSection.classList.add("collapsed");
-  elements.expandBtn.textContent = "Expand";
-
-  elements.expandBtn.textContent = state.expanded ? "Collapse" : "Expand";
+  syncExpandUI();
 
   elements.editBtn.addEventListener("click", enterEditMode);
-  elements.saveBtn.addEventListener("click", saveEdit);
+  elements.editForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    saveEdit();
+  });
   elements.cancelBtn.addEventListener("click", cancelEdit);
   elements.expandBtn.addEventListener("click", toggleExpand);
 

@@ -108,6 +108,12 @@ body {
   max-height: 500px;
   overflow: hidden;
   transition: max-height 0.3s ease;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.todo-description-wrapper [data-testid="test-todo-description"] {
+  white-space: pre-wrap;
 }
 
 /* Status Control */
@@ -174,7 +180,7 @@ body {
 
 /* expanded state */
 .todo-description-wrapper [data-testid="test-todo-collapsible-section"]:not(.collapsed) {
-  max-height: 500px;
+  max-height: none;
 }
 
 /* META */
